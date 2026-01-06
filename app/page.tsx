@@ -3,12 +3,14 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 
 /**
- * mishTee Delivery Mitra - Mobile Dashboard (TypeScript Verified)
+ * mishTee Delivery Mitra - Mobile Dashboard
+ * TypeScript-Safe Version for Next.js 16+
  */
 
 export default function DeliveryMitraDashboard() {
   const [isPulsing, setIsPulsing] = useState(true);
 
+  // Status Animation Logic
   useEffect(() => {
     const interval = setInterval(() => {
       setIsPulsing((prev) => !prev);
@@ -16,6 +18,7 @@ export default function DeliveryMitraDashboard() {
     return () => clearInterval(interval);
   }, []);
 
+  // Design Tokens
   const theme = {
     colors: {
       orange: "#FF8C00",
@@ -32,7 +35,8 @@ export default function DeliveryMitraDashboard() {
     }
   };
 
-  // Explicitly typing these as CSSProperties fixes the "Type Error"
+  // --- STYLES WITH EXPLICIT TYPES ---
+
   const containerStyle: CSSProperties = {
     maxWidth: "500px",
     margin: "0 auto",
@@ -40,7 +44,7 @@ export default function DeliveryMitraDashboard() {
     backgroundColor: theme.colors.bg,
     fontFamily: "Inter, -apple-system, system-ui, sans-serif",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column" as const, // Uses 'as const' for extra safety
     padding: "0 0 40px 0",
     color: theme.colors.textMain
   };
@@ -49,9 +53,9 @@ export default function DeliveryMitraDashboard() {
     backgroundColor: theme.colors.white,
     padding: "32px 20px",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column" as const,
     alignItems: "center",
-    textAlign: "center",
+    textAlign: "center" as const,
     borderRadius: "0 0 32px 32px",
     borderBottom: `1px solid ${theme.colors.border}`,
     marginBottom: "24px"
@@ -117,6 +121,7 @@ export default function DeliveryMitraDashboard() {
 
   return (
     <div style={containerStyle}>
+      {/* HEADER */}
       <header style={headerStyle}>
         <img 
           src="https://raw.githubusercontent.com/sudhir-voleti/mishtee-magic/main/mishTee_logo.png" 
@@ -132,6 +137,7 @@ export default function DeliveryMitraDashboard() {
         </div>
       </header>
 
+      {/* TASK CARD */}
       <div style={cardStyle}>
         <div style={{ fontSize: "12px", fontWeight: "700", color: theme.colors.textSecondary, textTransform: "uppercase", marginBottom: "8px" }}>
           Current Task
@@ -145,15 +151,16 @@ export default function DeliveryMitraDashboard() {
         </p>
       </div>
 
+      {/* ACTION BUTTON */}
       <button 
         style={navButtonStyle}
-        onClick={() => window.open('https://www.google.com/maps', '_blank')}
+        onClick={() => window.open('https://maps.google.com', '_blank')}
       >
         <span>📍</span>
         Start Navigation
       </button>
 
-      <footer style={{ marginTop: "auto", textAlign: "center", padding: "20px" }}>
+      <footer style={{ marginTop: "auto", textAlign: "center" as const, padding: "20px" }}>
         <p style={{ color: theme.colors.textSecondary, fontSize: "12px" }}>
           Safe travels, Mitra! Always wear a helmet.
         </p>
