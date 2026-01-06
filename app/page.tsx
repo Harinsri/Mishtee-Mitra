@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 /**
- * mishTee Delivery Mitra - Mobile Dashboard
- * Architected by Senior Frontend Engineer
- * Features: Mobile-first, Inline Styles, Real-time Status Pulse
+ * mishTee Delivery Mitra - Mobile Dashboard (TypeScript Verified)
  */
 
 export default function DeliveryMitraDashboard() {
   const [isPulsing, setIsPulsing] = useState(true);
 
-  // Status Animation: Toggles opacity for the "Agent Online" indicator
   useEffect(() => {
     const interval = setInterval(() => {
       setIsPulsing((prev) => !prev);
@@ -19,7 +16,6 @@ export default function DeliveryMitraDashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Centralized Design System (Tokens)
   const theme = {
     colors: {
       orange: "#FF8C00",
@@ -36,8 +32,8 @@ export default function DeliveryMitraDashboard() {
     }
   };
 
-  // Inline Style Objects
-  const containerStyle = {
+  // Explicitly typing these as CSSProperties fixes the "Type Error"
+  const containerStyle: CSSProperties = {
     maxWidth: "500px",
     margin: "0 auto",
     minHeight: "100vh",
@@ -49,7 +45,7 @@ export default function DeliveryMitraDashboard() {
     color: theme.colors.textMain
   };
 
-  const headerStyle = {
+  const headerStyle: CSSProperties = {
     backgroundColor: theme.colors.white,
     padding: "32px 20px",
     display: "flex",
@@ -57,17 +53,17 @@ export default function DeliveryMitraDashboard() {
     alignItems: "center",
     textAlign: "center",
     borderRadius: "0 0 32px 32px",
-    boxShadow: theme.colors.border,
+    borderBottom: `1px solid ${theme.colors.border}`,
     marginBottom: "24px"
   };
 
-  const logoStyle = {
+  const logoStyle: CSSProperties = {
     width: "80px",
     height: "auto",
     marginBottom: "16px"
   };
 
-  const titleStyle = {
+  const titleStyle: CSSProperties = {
     color: theme.colors.orange,
     fontSize: "24px",
     fontWeight: "800",
@@ -75,7 +71,7 @@ export default function DeliveryMitraDashboard() {
     letterSpacing: "-0.5px"
   };
 
-  const statusBoxStyle = {
+  const statusBoxStyle: CSSProperties = {
     display: "flex",
     alignItems: "center",
     gap: "8px",
@@ -84,7 +80,7 @@ export default function DeliveryMitraDashboard() {
     borderRadius: "20px"
   };
 
-  const pulseDotStyle = {
+  const pulseDotStyle: CSSProperties = {
     width: "10px",
     height: "10px",
     backgroundColor: theme.colors.green,
@@ -93,7 +89,7 @@ export default function DeliveryMitraDashboard() {
     transition: "opacity 0.6s ease-in-out"
   };
 
-  const cardStyle = {
+  const cardStyle: CSSProperties = {
     margin: "0 20px",
     backgroundColor: theme.colors.white,
     borderRadius: "20px",
@@ -102,22 +98,7 @@ export default function DeliveryMitraDashboard() {
     border: `1px solid ${theme.colors.border}`
   };
 
-  const labelStyle = {
-    fontSize: "12px",
-    fontWeight: "700",
-    color: theme.colors.textSecondary,
-    textTransform: "uppercase",
-    letterSpacing: "1px",
-    marginBottom: "8px"
-  };
-
-  const nameStyle = {
-    fontSize: "20px",
-    fontWeight: "700",
-    margin: "0 0 4px 0"
-  };
-
-  const navButtonStyle = {
+  const navButtonStyle: CSSProperties = {
     margin: "24px 20px 0 20px",
     backgroundColor: theme.colors.orange,
     color: theme.colors.white,
@@ -131,13 +112,11 @@ export default function DeliveryMitraDashboard() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "10px",
-    transition: "transform 0.1s active"
+    gap: "10px"
   };
 
   return (
     <div style={containerStyle}>
-      {/* HEADER SECTION */}
       <header style={headerStyle}>
         <img 
           src="https://raw.githubusercontent.com/sudhir-voleti/mishtee-magic/main/mishTee_logo.png" 
@@ -153,28 +132,29 @@ export default function DeliveryMitraDashboard() {
         </div>
       </header>
 
-      {/* TASK CARD SECTION */}
       <div style={cardStyle}>
-        <div style={labelStyle}>Current Task</div>
-        <div style={nameStyle}>Deliver to: Arjun Mehta</div>
+        <div style={{ fontSize: "12px", fontWeight: "700", color: theme.colors.textSecondary, textTransform: "uppercase", marginBottom: "8px" }}>
+          Current Task
+        </div>
+        <div style={{ fontSize: "20px", fontWeight: "700", margin: "0 0 4px 0" }}>
+          Deliver to: Arjun Mehta
+        </div>
         <p style={{ margin: "4px 0 0 0", color: theme.colors.textSecondary, fontSize: "15px", lineHeight: "1.4" }}>
           House 402, Rosewood Heights,<br />
           DLF Phase 5, Gurgaon
         </p>
       </div>
 
-      {/* ACTION BUTTON */}
       <button 
         style={navButtonStyle}
-        onClick={() => window.open('https://maps.google.com', '_blank')}
+        onClick={() => window.open('https://www.google.com/maps', '_blank')}
       >
-        <span style={{ fontSize: "20px" }}>📍</span>
+        <span>📍</span>
         Start Navigation
       </button>
 
-      {/* FOOTER */}
       <footer style={{ marginTop: "auto", textAlign: "center", padding: "20px" }}>
-        <p style={{ color: theme.colors.textSecondary, fontSize: "12px", fontWeight: "500" }}>
+        <p style={{ color: theme.colors.textSecondary, fontSize: "12px" }}>
           Safe travels, Mitra! Always wear a helmet.
         </p>
       </footer>
